@@ -13,3 +13,9 @@ npm install --save @ant-design/icons
 
 import Antd
 @import "antd/dist/antd.css";
+
+Poke API
+https://pokeapi.co/
+
+Install redux
+npm i redux react-redux
