@@ -19,3 +19,6 @@ https://pokeapi.co/
 
 Install redux
 npm i redux react-redux
+
+Thunk
+npm install redux-thunk
