@@ -22,3 +22,6 @@ npm i redux react-redux
 
 Thunk
 npm install redux-thunk
+
+Immutable
+npm i immutable

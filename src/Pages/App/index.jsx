@@ -5,16 +5,13 @@ import { PokemonList } from "../../Components/PokemonList";
 import logo from "../../statics/logo.svg";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, getPokemonDetails } from "../../redux/api";
-import {
-  getPokemonsWithDetails,
-  setLoading,
-  setPokemons,
-} from "../../redux/actions";
+import { getPokemons } from "../../redux/api";
+import { getPokemonsWithDetails, setLoading } from "../../redux/actions";
 
 function App() {
-  const pokemons = useSelector((state) => state.pokemons);
-  const loading = useSelector((state) => state.loading);
+  const pokemons = useSelector((state) => state.get("pokemons")).toJS();
+  // const loading = useSelector((state) => state.loading);
+  const loading = useSelector((state) => state.get("loading"));
 
   const dispatch = useDispatch();
 
