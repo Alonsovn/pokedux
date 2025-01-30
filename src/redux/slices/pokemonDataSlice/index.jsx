@@ -4,6 +4,7 @@ import { setLoading } from "../uiDataSlice";
 
 const initialState = {
   pokemons: [],
+  pokemonsFiltered: [],
 };
 
 export const fetchPokemonsWithDetails = createAsyncThunk(
@@ -16,6 +17,7 @@ export const fetchPokemonsWithDetails = createAsyncThunk(
       pokemonsRes.map((pokemon) => getPokemonDetails(pokemon))
     );
     dispatch(setPokemons(pokemonDetailed));
+    dispatch(setPokemonsFiltered({ pokemonName: "" }));
 
     dispatch(setLoading(false));
   }
@@ -29,7 +31,6 @@ export const pokemonDataSlice = createSlice({
       state.pokemons = action.payload;
     },
     setFavorite: (state, action) => {
-      console.log("set favorite", action.payload);
       const currentPokemonIndex = state.pokemons.findIndex((pokemon) => {
         return pokemon.id === action.payload.pokemonId;
       });
@@ -38,10 +39,26 @@ export const pokemonDataSlice = createSlice({
         const isFavorite = state.pokemons[currentPokemonIndex].favorite;
         state.pokemons[currentPokemonIndex].favorite = !isFavorite;
       }
+      state.pokemonsFiltered = state.pokemons;
+    },
+    setPokemonsFiltered: (state, action) => {
+      const pokemonNameSearchText = action.payload.pokemonName.toLowerCase();
+
+      if (pokemonNameSearchText === "") {
+        state.pokemonsFiltered = state.pokemons;
+      }
+
+      const filtered = state.pokemons.filter((pokemon) => {
+        const pokemonNameText = pokemon.name.toLowerCase();
+        return pokemonNameText.includes(pokemonNameSearchText);
+      });
+
+      state.pokemonsFiltered = filtered;
     },
   },
 });
 
-export const { setFavorite, setPokemons } = pokemonDataSlice.actions;
+export const { setFavorite, setPokemons, setPokemonsFiltered } =
+  pokemonDataSlice.actions;
 
 export default pokemonDataSlice.reducer;

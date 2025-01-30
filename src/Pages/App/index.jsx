@@ -12,6 +12,10 @@ function App() {
     (state) => state.pokemonData.pokemons,
     shallowEqual
   );
+  const pokemonsFiltered = useSelector(
+    (state) => state.pokemonData.pokemonsFiltered,
+    shallowEqual
+  );
   const loading = useSelector((state) => state.ui.loading);
 
   const dispatch = useDispatch();
@@ -40,7 +44,7 @@ function App() {
             <Spin spinning size="large" />
           </Col>
         ) : (
-          <PokemonList pokemons={pokemons} />
+          <PokemonList pokemons={pokemonsFiltered} />
         )}
       </div>
     </>
