@@ -2,7 +2,7 @@ import { Card } from "antd";
 import Meta from "antd/es/card/Meta";
 import { StartButton } from "../StartButton";
 import { useDispatch } from "react-redux";
-import { setFavorite } from "../../redux/actions";
+import { setFavorite } from "../../redux/slices/pokemonDataSlice";
 
 const PokemonCard = ({ pokemon }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const PokemonCard = ({ pokemon }) => {
       extra={
         <StartButton
           isFavorite={pokemon.favorite}
-          onClick={() => handleOnClickFavorite()}
+          onClick={handleOnClickFavorite}
         />
       }
     >

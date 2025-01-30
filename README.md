@@ -25,3 +25,7 @@ npm install redux-thunk
 
 Immutable
 npm i immutable
+
+Toolkit
+
+npm i @reduxjs/toolkit
